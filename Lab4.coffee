@@ -45,6 +45,11 @@ testAnd = () ->
   toReturn = yes and testYes()
   toReturn
 
+testNullThingy = (str) ->
+  holder = str
+  holder ?= true
+  holder
+
 ############ Tests ############
 assert = require 'assert'
 
@@ -81,4 +86,12 @@ describe "testing operators and aliases", ->
     assert.equal(testIs(3), false)
   it "should return true", ->
     assert.equal(testAnd(), true)
+describe "testing the existential operator", ->
+  it "should return null", ->
+    assert.equal(testNullThingy("notNull"), "notNull")
+  it "should return true", ->
+    assert.equal(testNullThingy(null), true)
+  it "should return 0", ->
+    assert.equal(testNullThingy(0), 0)
+
 
