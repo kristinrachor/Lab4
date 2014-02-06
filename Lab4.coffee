@@ -33,6 +33,18 @@ invert = (array, firstIndex, secondIndex) ->
   toReturn[firstIndex..secondIndex] = copy
   toReturn
 
+testYes = () ->
+  toReturn = yes == true
+  toReturn
+
+testIs = (int) ->
+  toReturn = int is ("" + int)
+  toReturn
+
+testAnd = () ->
+  toReturn = yes and testYes()
+  toReturn
+
 ############ Tests ############
 assert = require 'assert'
 
@@ -62,3 +74,11 @@ describe "testing array slicing and splicing", ->
     assert.deepEqual(invert(arr, 1, 3), arr5)
   it "should invert part of the array", ->
     assert.deepEqual(invert(arr6, 1, 3), arr7)
+describe "testing operators and aliases", ->
+  it "should return true", ->
+    assert.equal(testYes(), true)
+  it "should return false because type mismatch", ->
+    assert.equal(testIs(3), false)
+  it "should return true", ->
+    assert.equal(testAnd(), true)
+
