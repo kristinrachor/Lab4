@@ -62,6 +62,16 @@ testPerson = () ->
   [name, hair, toReturn] = ["Tim", "Red Hair", "15"]
   toReturn
 
+testSplat = (first, second, third, others...) ->
+  first
+
+testSplat2 = (first, second, third, others...) ->
+  second
+
+testSplat3 = (first, second, third, others...) ->
+  others
+
+
 
 ############ Tests ############
 assert = require 'assert'
@@ -113,4 +123,12 @@ describe "testing the destructuring assignment", ->
     assert.equal(testSwitch2(0, 1), 1)
   it "should return your age", ->
     assert.equal(testPerson(), 15)
+describe "testing splat", ->
+  it "should return the first item in the input", ->
+    assert.equal(testSplat(arr...), 1)
+  it "should return the second item in the input", ->
+    assert.equal(testSplat2(arr...), 2)
+  it "should return the last two elements", ->
+    assert.deepEqual(testSplat3(arr...), [4, 5])
+
 
