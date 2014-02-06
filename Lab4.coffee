@@ -50,6 +50,19 @@ testNullThingy = (str) ->
   holder ?= true
   holder
 
+testSwitch = (var0, var1) ->
+  [var0, var1] = [var1, var0]
+  var1
+
+testSwitch2 = (var0, var1) ->
+  [var0, var1] = [var1, var0]
+  var0
+
+testPerson = () ->
+  [name, hair, toReturn] = ["Tim", "Red Hair", "15"]
+  toReturn
+
+
 ############ Tests ############
 assert = require 'assert'
 
@@ -93,5 +106,11 @@ describe "testing the existential operator", ->
     assert.equal(testNullThingy(null), true)
   it "should return 0", ->
     assert.equal(testNullThingy(0), 0)
-
+describe "testing the destructuring assignment", ->
+  it "should return 0", ->
+    assert.equal(testSwitch(0, 1), 0)
+  it "should return 1", ->
+    assert.equal(testSwitch2(0, 1), 1)
+  it "should return your age", ->
+    assert.equal(testPerson(), 15)
 
