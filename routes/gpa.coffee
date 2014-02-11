@@ -6,6 +6,12 @@ convert = (grade) ->
   toReturn
 
 calculate = (arrGrades, arrCredits) ->
+  for x in [0..3]
+    if arrGrades[x] == ""
+      return "Insufficient Data"
+  for x in [0..3]
+    if arrCredits[x] == ""
+      return "Insufficient Data"
   for x in [0...(arrGrades.length)]
     arrGrades[x] = convert(arrGrades[x])
   holder = []
@@ -138,4 +144,4 @@ exports.gpaResponse = (req, res) ->
 
 exports.postResponse = (req, res) ->
   answer = calculate([req.body.class1, req.body.class2, req.body.class3, req.body.class4],[parseFloat(req.body.credits1), parseFloat(req.body.credits2), parseFloat(req.body.credits3), parseFloat(req.body.credits4)])
-  res.send headerString + calculatorString + "<p>Your gpa is:" + answer + "</p>" + footerString
+  res.send headerString + calculatorString + "<p>Your gpa is: " + answer + "</p>" + footerString

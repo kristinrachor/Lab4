@@ -7,6 +7,7 @@ routes = require("./routes")
 user = require("./routes/user")
 http = require("http")
 path = require("path")
+gpa = require './routes/gpa'
 app = express()
 
 # all environments
@@ -26,5 +27,7 @@ app.use express.static(path.join(__dirname, "public"))
 app.use express.errorHandler()  if "development" is app.get("env")
 app.get "/", routes.index
 app.get "/users", user.list
+app.get "/gpa", gpa.gpaResponse
+app.post "/gpa", gpa.postResponse
 http.createServer(app).listen app.get("port"), ->
     console.log "Express server listening on port " + app.get("port")
